@@ -1,0 +1,2 @@
+MainPackage=C:\Users\khill\Documents\Apps\FlipFlap\FlipFlap\FlipFlap.Windows\bin\Release\FlipFlap.Windows_1.1.0.5_Bundle\FlipFlap.Windows_1.1.0.5_AnyCPU.appx
+ResourcePack=C:\Users\khill\Documents\Apps\FlipFlap\FlipFlap\FlipFlap.Windows\bin\Release\FlipFlap.Windows_1.1.0.5_Bundle\FlipFlap.Windows_1.1.0.5_scale-180.appx

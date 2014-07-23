@@ -1,0 +1,2 @@
+MainPackage=C:\Users\khill\Documents\Apps\FlipFlap\FlipFlap\FlipFlap.WindowsPhone\bin\Release\FlipFlap.WindowsPhone_1.1.0.2_Bundle\FlipFlap.WindowsPhone_1.1.0.2_AnyCPU.appx
+ResourcePack=C:\Users\khill\Documents\Apps\FlipFlap\FlipFlap\FlipFlap.WindowsPhone\bin\Release\FlipFlap.WindowsPhone_1.1.0.2_Bundle\FlipFlap.WindowsPhone_1.1.0.2_scale-100.appx
