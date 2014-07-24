@@ -1,12 +1,18 @@
-﻿var gameGesture;
+﻿// Global object to hold the gesture information for touch events
+var gameGesture;
 
+// Detect when the document has loaded
 $(document).ready(function(){
-	init();
+    // initialize
+    init();
 });
 
+// Inialize all the events for the game
 function init() {
+    // Handle the Window Resize event, redraw the grid to fill the screen
     window.onresize = function (e) {
         console.log('height:' + $(document).height() + ' width:' + $(document).width());
+        //TODO: Redraw the grid
     }
     
 	// Setup event listener for Keydown event
