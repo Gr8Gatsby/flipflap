@@ -1,18 +1,22 @@
-﻿// The grid controls most of the game logic at this point.
+﻿// The grid controls the game logic for moving and scoring.  All of the events in this game are triggered from the keys.js file
 var cell = {
 	value: null,
 	color: 'undefined' 
 }
 
+// JavaScript Object representing the grid
 var grid = {
-	rows: 10,	//Default
-	cols: 10,	//Deafult
-	g: new Array(),
-	top:-1,
-	left:-1,
-	matches:0,
-	matchArray:[],
-	playerScore:0,
+	rows: 10,	                // Default rows
+	cols: 10,	                // Deafult cols
+	g: new Array(),             // Game grid
+	top:-1,                     // init current square
+	left:-1,                    // init current square
+	matches:0,                  // Total matches found in a turn
+	matchArray:[],              // Total matched objects found in a turn
+	playerScore: 0,              // The total player score for a game
+
+    // This function initializes the data for the grid
+    // INPUT: r = rows, c = columns. will default to 10 x 10
 	createGrid: function(r, c){
 		this.rows = r || 10;
 		this.cols = c || 10;
@@ -23,7 +27,10 @@ var grid = {
 			}
 		}
 	},
-	drawGrid: function(element){
+
+    // This function creates the HTML elements for rows and columns
+    // INPUT: The parent HTML element to host the grid
+	drawGrid: function (element) {
 		for(var i = 0; i < this.rows; i++) {
 			var d = document.createElement("div");
 			var row = element.appendChild(d);
@@ -31,19 +38,20 @@ var grid = {
 			for(var j = 0; j < this.cols; j++) {
 				var s = document.createElement("div");
 				s.setAttribute("class","cell");
-				//s.innerText = i+","+j;
 				row.appendChild(s);
 				this.g[i][j].obj = s;
 			}
 		}
 	},
-	reset: function(){
-		
-	},
+
+    // This function updates the actual Background Color of the cell
+    // as well as the 'color' data for the cell
 	updateCell: function(color, i, j){
 		this.g[i][j].color = color;
 		this.g[i][j].obj.style.backgroundColor = color;
 	},
+
+    // This function adds the initial "flipper" square to the grid
 	addSquare: function(i, j){
 		this.left = i;
 		this.top = j;
@@ -55,16 +63,12 @@ var grid = {
 		square.setAttribute("id","sq");
 		square.setAttribute("class", "square");
 		square.innerText = '_';
-		square.textContent = '_'; //Firefox hack
+		square.textContent = '_';                                   // Firefox hack
 		holder.appendChild(square);
 		document.body.appendChild(holder);
 	},
-	handleMove: function(){
 
-	},
-	updateSquare: function(color){
-		document.getElementById("sq").backgroundColor = color;
-	},
+	// This function moves the 'flipper' square
 	moveSquare: function(dir){
 		var holder = document.getElementById('flipper');
 		var square = document.getElementById('sq');
@@ -86,14 +90,15 @@ var grid = {
 
 		holder.style.left = this.g[this.left][this.top].obj.offsetLeft + "px";
 		holder.style.top = this.g[this.left][this.top].obj.offsetTop + 0.2 + "px";
-		//var c = getNextColor();
-		//holder.style.backgroundColor = c;
+
 		square.style.backgroundColor = game.nextColor;
 		this.updateCell(game.nextColor,this.left, this.top);
 		this.score();
 		game.animating = false;
 		this.checkCanMove();
 	},
+
+    // This function checks to see if the flipper can move
 	canMove: function(dir){
 		switch(dir){
 			case "left":			
@@ -121,6 +126,10 @@ var grid = {
 		}
 		return false;
 	},
+
+    // This function checks to see if there are enough squares to score
+    // This will recusively call the checkMatch function if it finds any
+    // matching squares
 	score: function(){
 
 		var row = this.left;
@@ -170,6 +179,8 @@ var grid = {
 		document.getElementById('displayScore').textContent = 'Score: ' + this.playerScore; //Firefox hack
 
 	},
+    // This is a recursive function that will check for adjacent matches
+    // in the grid
 	checkMatch: function(i, j, ignore){
 		var row = i;
 		var col = j;
@@ -204,6 +215,8 @@ var grid = {
 			}
 		}	
 	},
+    // This function checks to see if there are any moves possible
+    // If there are no more moves possible then the game ends
 	checkCanMove: function(){
 		var moveUp = this.canMove("up");
 		var moveDown = this.canMove("down");
@@ -214,7 +227,7 @@ var grid = {
 			//Game Over!
 			var square = document.getElementById('sq');
 			square.innerText = ":(";
-			square.textContent = ":(";  //Firefox hack
+			square.textContent = ":(";                              // Firefox hack
 			$('#flipper').removeClass().addClass('endGame');
 			game.isOver = true;
 		}
