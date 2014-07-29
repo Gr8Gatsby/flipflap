@@ -43,17 +43,23 @@ function init() {
 
 	// Setup event listeners for CSS Animations
 	var flipper = document.getElementById('flipper');
-    //IE
+
+    //IE event listeners
 	flipper.addEventListener('MSAnimationEnd', flipperAnimationEnded, false);
 	flipper.addEventListener('MSAnimationStart', flipperAnimationStarted, false);
-    // Webkit
+
+    // Webkit event listeners
 	flipper.addEventListener('webkitAnimationEnd', flipperAnimationEnded, false);
 	flipper.addEventListener('webkitAnimationStart', flipperAnimationStarted, false);
-    //Firefox
+
+    // Firefox event listeners
 	flipper.addEventListener('animationend', flipperAnimationEnded, false);
 	flipper.addEventListener('animationstart', flipperAnimationStarted, false);
 	
+    // Generate the colorqueue
 	generateColorQueue();
+
+    // Draw the colorqueue
 	drawColorQueue();
 
 }
