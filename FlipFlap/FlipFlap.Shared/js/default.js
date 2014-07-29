@@ -14,6 +14,8 @@ function init() {
         console.log('height:' + $(document).height() + ' width:' + $(document).width());
         //TODO: Redraw the grid
 
+        //
+
     }
     
 	// Setup event listener for Keydown event
@@ -37,7 +39,7 @@ function init() {
 
 	// Setup the game grid
 	gameGrid = Object.create(grid);
-	gameGrid.createGrid(8,8);
+	gameGrid.createGrid(150,150);
 	gameGrid.drawGrid(document.getElementById('board'));
 	//gameGrid.updateCell('red',5,5);
 	gameGrid.addSquare(2,1);

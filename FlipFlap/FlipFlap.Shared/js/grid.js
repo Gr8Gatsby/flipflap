@@ -32,13 +32,32 @@ var grid = {
     // This function creates the HTML elements for rows and columns
     // INPUT: The parent HTML element to host the grid
 	drawGrid: function (element) {
+
+	    //Check the dimensions
+	    var height = $(document).height();
+	    var width = $(document).width();
+	    var isLandscape = width > height ? true : false;
+	    var isPortrait = !isLandscape;
+	    
+	    if (isPortrait) {
+	        var boardWidth = width - 20;
+	        game.cellWidth = Math.floor(boardWidth / (this.rows + 1));
+	    } else if (isLandscape) {
+	        var boardHeight = height - 200;
+	        game.cellWidth = Math.floor(boardHeight / (this.rows + 1));
+	    }
+
+
 		for(var i = 0; i < this.rows; i++) {
 			var d = document.createElement("div");
 			var row = element.appendChild(d);
 			row.setAttribute("class","row");
 			for(var j = 0; j < this.cols; j++) {
 				var s = document.createElement("div");
-				s.setAttribute("class","cell");
+			    //s.setAttribute("class","cell");
+				s.setAttribute("style", "width:" + game.cellWidth + "px;height:" + game.cellWidth + "px;");
+				s.style.backgroundColor = game.defaultCellColor;
+				console.log(game.cellWidth);
 				row.appendChild(s);
 				this.g[i][j].obj = s;
 			}
@@ -60,9 +79,11 @@ var grid = {
 		holder.setAttribute("id","flipper");
 		holder.style.top = this.g[i][j].obj.offsetTop  + "px";
 		holder.style.left = this.g[i][j].obj.offsetLeft + "px";
+		holder.setAttribute("style", "width:" + game.cellWidth + "px;height:" + game.cellWidth + "px;");
 		var square = document.createElement("div");
 		square.setAttribute("id","sq");
-		square.setAttribute("class", "square");
+		//square.setAttribute("class", "square");
+		square.setAttribute("style", "width:" + game.cellWidth + "px;height:" + game.cellWidth + "px;");
 		square.innerText = '_';
 		square.textContent = '_';                                   // Firefox hack
 		holder.appendChild(square);
@@ -170,7 +191,7 @@ var grid = {
 
 		if(matchArray.length >= 2){
 			for(var i = 0; i < matchArray.length; i++){
-				matchArray[i].obj.style.backgroundColor = '#077A75';
+			    matchArray[i].obj.style.backgroundColor = game.defaultCellColor;
 				matchArray[i].color = 'undefined';
 				this.playerScore++;
 			}
