@@ -49,7 +49,7 @@ function init() {
 	}
 
 
-    // xbox init
+    //xbox init
 	if (typeof Xbox !== 'undefined') {
 	    Xbox.initVoice();
 	}
