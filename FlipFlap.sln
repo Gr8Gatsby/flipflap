@@ -11,11 +11,14 @@ Project("{262852C6-CD72-467D-83FE-5EEB1973A190}") = "FlipFlap.Windows", "FlipFla
 EndProject
 Project("{262852C6-CD72-467D-83FE-5EEB1973A190}") = "FlipFlap.WindowsPhone", "FlipFlap\FlipFlap.WindowsPhone\FlipFlap.WindowsPhone.jsproj", "{A28F7A3F-7355-4A6A-B012-0BA0697A24CC}"
 EndProject
+Project("{262852C6-CD72-467D-83FE-5EEB1973A190}") = "FlipFlap.Xbox (Windows)", "FlipFlap\FlipFlap.Xbox\FlipFlap.Xbox (Windows).jsproj", "{F4EF4024-A5DD-4CD3-B2AF-2367770D211E}"
+EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
 		FlipFlap\FlipFlap.Shared\FlipFlap.Shared.projitems*{a28f7a3f-7355-4a6a-b012-0ba0697a24cc}*SharedItemsImports = 5
 		FlipFlap\FlipFlap.Shared\FlipFlap.Shared.projitems*{b487f5f8-fbf0-4c86-a820-551669a4fcda}*SharedItemsImports = 13
 		FlipFlap\FlipFlap.Shared\FlipFlap.Shared.projitems*{fe4c5c32-2fdc-402c-be25-e78b66c7917a}*SharedItemsImports = 5
+		FlipFlap\FlipFlap.Shared\FlipFlap.Shared.projitems*{f4ef4024-a5dd-4cd3-b2af-2367770d211e}*SharedItemsImports = 5
 	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -72,6 +75,30 @@ Global
 		{A28F7A3F-7355-4A6A-B012-0BA0697A24CC}.Release|x86.ActiveCfg = Release|x86
 		{A28F7A3F-7355-4A6A-B012-0BA0697A24CC}.Release|x86.Build.0 = Release|x86
 		{A28F7A3F-7355-4A6A-B012-0BA0697A24CC}.Release|x86.Deploy.0 = Release|x86
+		{F4EF4024-A5DD-4CD3-B2AF-2367770D211E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F4EF4024-A5DD-4CD3-B2AF-2367770D211E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F4EF4024-A5DD-4CD3-B2AF-2367770D211E}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{F4EF4024-A5DD-4CD3-B2AF-2367770D211E}.Debug|ARM.ActiveCfg = Debug|ARM
+		{F4EF4024-A5DD-4CD3-B2AF-2367770D211E}.Debug|ARM.Build.0 = Debug|ARM
+		{F4EF4024-A5DD-4CD3-B2AF-2367770D211E}.Debug|ARM.Deploy.0 = Debug|ARM
+		{F4EF4024-A5DD-4CD3-B2AF-2367770D211E}.Debug|x64.ActiveCfg = Debug|x64
+		{F4EF4024-A5DD-4CD3-B2AF-2367770D211E}.Debug|x64.Build.0 = Debug|x64
+		{F4EF4024-A5DD-4CD3-B2AF-2367770D211E}.Debug|x64.Deploy.0 = Debug|x64
+		{F4EF4024-A5DD-4CD3-B2AF-2367770D211E}.Debug|x86.ActiveCfg = Debug|x86
+		{F4EF4024-A5DD-4CD3-B2AF-2367770D211E}.Debug|x86.Build.0 = Debug|x86
+		{F4EF4024-A5DD-4CD3-B2AF-2367770D211E}.Debug|x86.Deploy.0 = Debug|x86
+		{F4EF4024-A5DD-4CD3-B2AF-2367770D211E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F4EF4024-A5DD-4CD3-B2AF-2367770D211E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F4EF4024-A5DD-4CD3-B2AF-2367770D211E}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{F4EF4024-A5DD-4CD3-B2AF-2367770D211E}.Release|ARM.ActiveCfg = Release|ARM
+		{F4EF4024-A5DD-4CD3-B2AF-2367770D211E}.Release|ARM.Build.0 = Release|ARM
+		{F4EF4024-A5DD-4CD3-B2AF-2367770D211E}.Release|ARM.Deploy.0 = Release|ARM
+		{F4EF4024-A5DD-4CD3-B2AF-2367770D211E}.Release|x64.ActiveCfg = Release|x64
+		{F4EF4024-A5DD-4CD3-B2AF-2367770D211E}.Release|x64.Build.0 = Release|x64
+		{F4EF4024-A5DD-4CD3-B2AF-2367770D211E}.Release|x64.Deploy.0 = Release|x64
+		{F4EF4024-A5DD-4CD3-B2AF-2367770D211E}.Release|x86.ActiveCfg = Release|x86
+		{F4EF4024-A5DD-4CD3-B2AF-2367770D211E}.Release|x86.Build.0 = Release|x86
+		{F4EF4024-A5DD-4CD3-B2AF-2367770D211E}.Release|x86.Deploy.0 = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -80,5 +107,6 @@ Global
 		{B487F5F8-FBF0-4C86-A820-551669A4FCDA} = {15B661E9-3586-4AF2-BBDF-F6ACF697D430}
 		{FE4C5C32-2FDC-402C-BE25-E78B66C7917A} = {15B661E9-3586-4AF2-BBDF-F6ACF697D430}
 		{A28F7A3F-7355-4A6A-B012-0BA0697A24CC} = {15B661E9-3586-4AF2-BBDF-F6ACF697D430}
+		{F4EF4024-A5DD-4CD3-B2AF-2367770D211E} = {15B661E9-3586-4AF2-BBDF-F6ACF697D430}
 	EndGlobalSection
 EndGlobal

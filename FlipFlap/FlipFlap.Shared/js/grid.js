@@ -1,8 +1,9 @@
-﻿// The grid controls most of the game logic at this point.
+﻿// The grid controls the game logic for moving and scoring.  All of the events in this game are triggered from the keys.js file
 var cell = {
 	value: null,
 	color: 'undefined' 
 }
+
 
 //--KS Needs to be made changable, rows and cols;
 
@@ -17,7 +18,10 @@ var grid = {
 	matches:0,
 	matchArray:[],
 	playerScore:0,
+	gridWidth: 0,               // The current gridWidth
+    gridHeight: 0,              // The current gridHeight
 	createGrid: function(r, c, s){
+
 		this.rows = r || 10;
 		this.cols = c || 10;
 		this.maxScore = s || 10;
@@ -28,28 +32,48 @@ var grid = {
 			}
 		}
 	},
-	drawGrid: function(element){
+
+    // This function creates the HTML elements for rows and columns
+    // INPUT: The parent HTML element to host the grid
+	drawGrid: function (element) {
+
+	    //Check the dimensions
+	    var height = $(document).height();
+	    var width = $(document).width();
+	    var isLandscape = width > height ? true : false;
+	    var isPortrait = !isLandscape;
+	    
+	    if (isPortrait) {
+	        var boardWidth = width - 20;
+	        game.cellWidth = Math.floor(boardWidth / (this.rows + 1));
+	    } else if (isLandscape) {
+	        var boardHeight = height - 200;
+	        game.cellWidth = Math.floor(boardHeight / (this.rows + 1));
+	    }
+
+
 		for(var i = 0; i < this.rows; i++) {
 			var d = document.createElement("div");
 			var row = element.appendChild(d);
 			row.setAttribute("class","row");
 			for(var j = 0; j < this.cols; j++) {
 				var s = document.createElement("div");
-				s.setAttribute("class","cell");
-				//s.innerText = i+","+j;
+			    //s.setAttribute("class","cell");
+				s.setAttribute("style", "width:" + game.cellWidth + "px;height:" + game.cellWidth + "px;");
+				s.style.backgroundColor = game.defaultCellColor;
+				console.log(game.cellWidth);
 				row.appendChild(s);
 				this.g[i][j].obj = s;
 			}
 		}
 	},
-	reset: function(){
-		
-	},
-	
+
 	updateCell: function(color, i, j){
 		this.g[i][j].color = color;
 		this.g[i][j].obj.style.backgroundColor = color;
 	},
+
+    // This function adds the initial "flipper" square to the grid
 	addSquare: function(i, j){
 		this.left = i;
 		this.top = j;
@@ -57,20 +81,18 @@ var grid = {
 		holder.setAttribute("id","flipper");
 		holder.style.top = this.g[i][j].obj.offsetTop  + "px";
 		holder.style.left = this.g[i][j].obj.offsetLeft + "px";
+		holder.setAttribute("style", "width:" + game.cellWidth + "px;height:" + game.cellWidth + "px;");
 		var square = document.createElement("div");
 		square.setAttribute("id","sq");
-		square.setAttribute("class", "square");
+		//square.setAttribute("class", "square");
+		square.setAttribute("style", "width:" + game.cellWidth + "px;height:" + game.cellWidth + "px;");
 		square.innerText = '_';
-		square.textContent = '_'; //Firefox hack
+		square.textContent = '_';                                   // Firefox hack
 		holder.appendChild(square);
 		document.body.appendChild(holder);
 	},
-	handleMove: function(){
 
-	},
-	updateSquare: function(color){
-		document.getElementById("sq").backgroundColor = color;
-	},
+	// This function moves the 'flipper' square
 	moveSquare: function(dir){
 		var holder = document.getElementById('flipper');
 		var square = document.getElementById('sq');
@@ -92,14 +114,15 @@ var grid = {
 
 		holder.style.left = this.g[this.left][this.top].obj.offsetLeft + "px";
 		holder.style.top = this.g[this.left][this.top].obj.offsetTop + 0.2 + "px";
-		//var c = getNextColor();
-		//holder.style.backgroundColor = c;
+
 		square.style.backgroundColor = game.nextColor;
 		this.updateCell(game.nextColor,this.left, this.top);
 		this.score();
 		game.animating = false;
 		this.checkCanMove();
 	},
+
+    // This function checks to see if the flipper can move
 	canMove: function(dir){
 		switch(dir){
 			case "left":			
@@ -127,6 +150,7 @@ var grid = {
 		}
 		return false;
 	},
+
 	goToNextLevel: function() {
 		// Setup the game grid
 		gameGrid = Object.create(grid);
@@ -149,6 +173,12 @@ var grid = {
 		document.getElementById('game').appendChild(newBoard);
 
 	},
+
+
+
+    // This function checks to see if there are enough squares to score
+    // This will recusively call the checkMatch function if it finds any
+    // matching squares
 
 	score: function(){
 
@@ -189,7 +219,7 @@ var grid = {
 
 		if(matchArray.length >= 2){
 			for(var i = 0; i < matchArray.length; i++){
-				matchArray[i].obj.style.backgroundColor = '#077A75';
+			    matchArray[i].obj.style.backgroundColor = game.defaultCellColor;
 				matchArray[i].color = 'undefined';
 				this.playerScore++;
 
@@ -215,7 +245,10 @@ var grid = {
 		}
 
 	},
-	
+
+    // This is a recursive function that will check for adjacent matches
+    // in the grid
+
 	checkMatch: function(i, j, ignore){
 		var row = i;
 		var col = j;
@@ -250,6 +283,8 @@ var grid = {
 			}
 		}	
 	},
+    // This function checks to see if there are any moves possible
+    // If there are no more moves possible then the game ends
 	checkCanMove: function(){
 		var moveUp = this.canMove("up");
 		var moveDown = this.canMove("down");
@@ -260,7 +295,7 @@ var grid = {
 			//Game Over!
 			var square = document.getElementById('sq');
 			square.innerText = ":(";
-			square.textContent = ":(";  //Firefox hack
+			square.textContent = ":(";                              // Firefox hack
 			$('#flipper').removeClass().addClass('endGame');
 			game.isOver = true;
 		}
