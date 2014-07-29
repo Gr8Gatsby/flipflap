@@ -1,25 +1,37 @@
 ﻿var handleKeypress = function (e) {
 
 	if(!game.animating) {
-		if(e.keyCode == 37) {
+	    if(e.keyCode == 37 ||
+            e.keyCode == 203 ||
+            e.keyCode == 212 || 
+            e.keyCode == 216) {
 			// Left Arrow pressed
 			game.direction = "left";
 			if(gameGrid.canMove(game.direction)) {
 				$('#flipper').removeClass().addClass('rotateLeft');
 			}
-		} else if (e.keyCode == 38) {
+	    } else if (e.keyCode == 38 ||
+            e.keyCode == 201 ||
+            e.keyCode == 209 ||
+            e.keyCode == 213) {
 			// Up Arrow pressed
 			game.direction = "up";
 			if(gameGrid.canMove(game.direction)) {
 				$('#flipper').removeClass().addClass('rotateUp');
 			}
-		} else if (e.keyCode == 39) {
+	    } else if (e.keyCode == 39 ||
+            e.keyCode == 204 ||
+            e.keyCode == 211 ||
+            e.keyCode == 215) {
 			// Right Arrow pressed
 			game.direction = "right";
 			if(gameGrid.canMove(game.direction)) {
 				$('#flipper').removeClass().addClass('rotateRight');
 			}
-		} else if (e.keyCode == 40) {
+	    } else if (e.keyCode == 40 ||
+            e.keyCode == 202 ||
+            e.keyCode == 210 ||
+            e.keyCode == 214) {
 			// Down Arrow pressed
 			game.direction = "down";
 			if(gameGrid.canMove(game.direction)) {

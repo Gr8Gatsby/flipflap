@@ -15,6 +15,7 @@
     <Content Include="$(MSBuildThisFileDirectory)js\game.js" />
     <Content Include="$(MSBuildThisFileDirectory)js\grid.js" />
     <Content Include="$(MSBuildThisFileDirectory)js\hammer.js" />
+    <Content Include="$(MSBuildThisFileDirectory)js\instructions.js" />
     <Content Include="$(MSBuildThisFileDirectory)js\jquery-2.1.0.js" />
     <Content Include="$(MSBuildThisFileDirectory)js\keys.js" />
     <Content Include="$(MSBuildThisFileDirectory)manifest.json" />

@@ -5,6 +5,11 @@
 	margin:20px;
 	overflow: hidden;
 	-ms-touch-action:none;
+    /*background-image: linear-gradient(90deg, rgba(255, 255, 255, 0.07) 50%, transparent 50%), linear-gradient(90deg, rgba(255, 255, 255, 0.13) 50%, transparent 50%), linear-gradient(90deg, transparent 50%, rgba(255, 255, 255, 0.17) 50%), linear-gradient(90deg, transparent 50%, rgba(255, 255, 255, 0.19) 50%); background-size: 13px, 29px, 37px, 53px; background-color: rgb(2, 104, 115);*/
+    /*background-position: 0px 10px, 0% 0%, 0% 0%; background-image: radial-gradient(circle at 0% 50%, rgba(96, 16, 48, 0) 9px, rgb(102, 17, 51) 10px, rgba(96, 16, 48, 0) 11px), radial-gradient(at 100% 100%, rgba(96, 16, 48, 0) 9px, rgb(102, 17, 51) 10px, rgba(96, 16, 48, 0) 11px), none; background-attachment: scroll, scroll, scroll; background-repeat: repeat, repeat, repeat; background-size: 20px 20px; background-origin: padding-box, padding-box, padding-box; background-clip: border-box, border-box, border-box; background-color: rgb(40, 40, 40);*/
+    /*background-position: 0px 0px, 40px 60px, 130px 270px, 70px 100px; background-image: radial-gradient(white, rgba(255, 255, 255, 0.2) 2px, transparent 40px), radial-gradient(white, rgba(255, 255, 255, 0.15) 1px, transparent 30px), radial-gradient(white, rgba(255, 255, 255, 0.1) 2px, transparent 40px), radial-gradient(rgba(255, 255, 255, 0.4), rgba(255, 255, 255, 0.1) 2px, transparent 30px); background-size: 550px 550px, 350px 350px, 250px 250px, 150px 150px; background-color: black;*/
+    /*background-image: radial-gradient(circle at 100% 150%, silver 24%, white 25%, white 28%, silver 29%, silver 36%, white 36%, white 40%, transparent 40%, transparent), radial-gradient(circle at 0px 150%, silver 24%, white 25%, white 28%, silver 29%, silver 36%, white 36%, white 40%, transparent 40%, transparent), radial-gradient(circle at 50% 100%, white 10%, silver 11%, silver 23%, white 24%, white 30%, silver 31%, silver 43%, white 44%, white 50%, silver 51%, silver 63%, white 64%, white 71%, transparent 71%, transparent), radial-gradient(circle at 100% 50%, white 5%, silver 6%, silver 15%, white 16%, white 20%, silver 21%, silver 30%, white 31%, white 35%, silver 36%, silver 45%, white 46%, white 49%, transparent 50%, transparent), radial-gradient(circle at 0px 50%, white 5%, silver 6%, silver 15%, white 16%, white 20%, silver 21%, silver 30%, white 31%, white 35%, silver 36%, silver 45%, white 46%, white 49%, transparent 50%, transparent); background-size: 100px 50px; background-color: silver;*/
+    /*background-image: radial-gradient(circle at 100% 150%, silver 24%, white 25%, white 28%, silver 29%, silver 36%, white 36%, white 40%, transparent 40%, transparent), radial-gradient(circle at 0px 150%, silver 24%, white 25%, white 28%, silver 29%, silver 36%, white 36%, white 40%, transparent 40%, transparent), radial-gradient(circle at 50% 100%, white 10%, silver 11%, silver 23%, white 24%, white 30%, silver 31%, silver 43%, white 44%, white 50%, silver 51%, silver 63%, white 64%, white 71%, transparent 71%, transparent), radial-gradient(circle at 100% 50%, white 5%, silver 6%, silver 15%, white 16%, white 20%, silver 21%, silver 30%, white 31%, white 35%, silver 36%, silver 45%, white 46%, white 49%, transparent 50%, transparent), radial-gradient(circle at 0px 50%, white 5%, silver 6%, silver 15%, white 16%, white 20%, silver 21%, silver 30%, white 31%, white 35%, silver 36%, silver 45%, white 46%, white 49%, transparent 50%, transparent); background-size: 100px 50px; background-color: black;*/
 }
 
 a:link {
@@ -27,11 +32,15 @@ a:visited {
 }
 
 #board {
-	width: 100%;
+    margin-left:auto;
+    margin-right:auto;
 }
 
 #colors {
 	display: inline;
+}
+.hidden {
+    display:none;
 }
 
 #colorQueueCell {
@@ -42,20 +51,20 @@ a:visited {
 	clear:both;
 	margin-left: auto;
 	margin-right: auto;
-	width:300px;
+	width:100%;
 }
 
 #header {
 	margin-left: auto;
 	margin-right: auto;
-	width:300px;
+	width:100%;
 }
 
 #footer {
 	clear: both;
 	margin-left: auto;
 	margin-right: auto;
-	width:300px;
+	width:100%;
 }
 
 #flipper {

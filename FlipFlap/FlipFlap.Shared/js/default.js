@@ -3,11 +3,18 @@ var gameGesture;
 
 // Detect when the document has loaded
 $(document).ready(function(){
-    // initialize
-    init();
-    // login popup
-	login();
+    // Check if user has run game before
+    if (hasUserRunBefore()) {
+        startInsturctions();
+    } else {
+        init();
+        login();
+    }
 });
+
+// Local Storage to see if user has launched for first time
+// Allow skipping instructions?
+// 
 
 // Inialize all the events for the game
 function init() {
@@ -15,6 +22,9 @@ function init() {
     window.onresize = function (e) {
         console.log('height:' + $(document).height() + ' width:' + $(document).width());
         //TODO: Redraw the grid
+
+        //
+
     }
     
 	// Setup event listener for Keydown event
@@ -36,26 +46,38 @@ function init() {
 	    });
 	}
 
+
+    // xbox init
+	if (typeof Xbox !== 'undefined') {
+	    Xbox.initVoice();
+	}
+
 	// Setup the game grid
 	gameGrid = Object.create(grid);
-	gameGrid.createGrid(8,8);
+	gameGrid.createGrid(game.levels[game.currentLevel].columns,game.levels[game.currentLevel].rows,game.levels[game.currentLevel].maxScore);
+
 	gameGrid.drawGrid(document.getElementById('board'));
 	//gameGrid.updateCell('red',5,5);
 	gameGrid.addSquare(2,1);
 
 	// Setup event listeners for CSS Animations
 	var flipper = document.getElementById('flipper');
-    //IE
+
+    //IE event listeners
 	flipper.addEventListener('MSAnimationEnd', flipperAnimationEnded, false);
 	flipper.addEventListener('MSAnimationStart', flipperAnimationStarted, false);
-    // Webkit
+
+    // Webkit event listeners
 	flipper.addEventListener('webkitAnimationEnd', flipperAnimationEnded, false);
 	flipper.addEventListener('webkitAnimationStart', flipperAnimationStarted, false);
-    //Firefox
+
+    // Firefox event listeners
 	flipper.addEventListener('animationend', flipperAnimationEnded, false);
 	flipper.addEventListener('animationstart', flipperAnimationStarted, false);
 	
-	generateColorQueue();
+
+	generateColorQueue(game.levels[game.currentLevel].colors);
+
 	drawColorQueue();
 
 }
@@ -102,6 +124,6 @@ function flipperAnimationEnded(e) {
 
 function flipperAnimationStarted(e) {
     game.animating = true;
-    game.nextColor = getNextColor();
+    game.nextColor = getNextColor(game.levels[game.currentLevel].colors);
     document.getElementById('flipper').style.backgroundColor = game.nextColor;
 }
