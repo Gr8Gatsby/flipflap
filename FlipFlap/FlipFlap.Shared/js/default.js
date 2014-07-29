@@ -39,7 +39,7 @@ function init() {
 
 	// Setup the game grid
 	gameGrid = Object.create(grid);
-	gameGrid.createGrid(150,150);
+	gameGrid.createGrid(10,10);
 	gameGrid.drawGrid(document.getElementById('board'));
 	//gameGrid.updateCell('red',5,5);
 	gameGrid.addSquare(2,1);
