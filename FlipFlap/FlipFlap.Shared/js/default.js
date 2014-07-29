@@ -3,9 +3,20 @@ var gameGesture;
 
 // Detect when the document has loaded
 $(document).ready(function(){
-    // initialize
-    init();
+    // Check if user has run game before
+    if (hasUserRunBefore()) {
+        startInsturctions();
+    } else {
+        init();
+    }
 });
+
+
+
+
+// Local Storage to see if user has launched for first time
+// Allow skipping instructions?
+// 
 
 // Inialize all the events for the game
 function init() {
