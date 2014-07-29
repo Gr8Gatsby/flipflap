@@ -13,6 +13,7 @@ function init() {
     window.onresize = function (e) {
         console.log('height:' + $(document).height() + ' width:' + $(document).width());
         //TODO: Redraw the grid
+
     }
     
 	// Setup event listener for Keydown event
