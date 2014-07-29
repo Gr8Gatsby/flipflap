@@ -1,10 +1,20 @@
 ﻿body {
 	font-family: 'Consolas';
-	background-color: #0FBAB2;
+	background-color: #1dd2af;
 	color: white;
 	margin:20px;
 	overflow: hidden;
 	-ms-touch-action:none;
+}
+
+a:link {
+	text-decoration: none;
+	color: #FFFFFF;
+}
+
+a:visited {
+	text-decoration: none;
+	color: #FFFFFF;
 }
 
 .square {
