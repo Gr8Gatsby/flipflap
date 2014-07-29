@@ -37,6 +37,11 @@ function init() {
 	    });
 	}
 
+    // xbox init
+	if (typeof Xbox !== 'undefined') {
+	    Xbox.initVoice();
+	}
+
 	// Setup the game grid
 	gameGrid = Object.create(grid);
 	gameGrid.createGrid(10,10);
