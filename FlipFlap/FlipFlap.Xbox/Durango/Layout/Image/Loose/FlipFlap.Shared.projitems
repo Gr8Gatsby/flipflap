@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <MSBuildAllProjects>$(MSBuildAllProjects);$(MSBuildThisFileFullPath)</MSBuildAllProjects>
+    <HasSharedItems>true</HasSharedItems>
+    <SharedGUID>b487f5f8-fbf0-4c86-a820-551669a4fcda</SharedGUID>
+  </PropertyGroup>
+  <ItemGroup>
+    <Content Include="$(MSBuildThisFileDirectory)css\default.css" />
+    <Content Include="$(MSBuildThisFileDirectory)default.html" />
+    <Content Include="$(MSBuildThisFileDirectory)img\128.png" />
+    <Content Include="$(MSBuildThisFileDirectory)js\background.js" />
+    <Content Include="$(MSBuildThisFileDirectory)js\colors.js" />
+    <Content Include="$(MSBuildThisFileDirectory)js\default.js" />
+    <Content Include="$(MSBuildThisFileDirectory)js\game.js" />
+    <Content Include="$(MSBuildThisFileDirectory)js\grid.js" />
+    <Content Include="$(MSBuildThisFileDirectory)js\hammer.js" />
+    <Content Include="$(MSBuildThisFileDirectory)js\instructions.js" />
+    <Content Include="$(MSBuildThisFileDirectory)js\jquery-2.1.0.js" />
+    <Content Include="$(MSBuildThisFileDirectory)js\keys.js" />
+    <Content Include="$(MSBuildThisFileDirectory)manifest.json" />
+    <Content Include="$(MSBuildThisFileDirectory)manifest.webapp" />
+  </ItemGroup>
+</Project>

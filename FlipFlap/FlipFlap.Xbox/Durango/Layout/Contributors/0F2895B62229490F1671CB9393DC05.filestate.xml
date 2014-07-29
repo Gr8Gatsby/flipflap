@@ -1,0 +1,13 @@
+<Contributor ComponentSource="c:\users\nikolame\source\flip_flap\flipflap\flipflap\flipflap.xbox\app1\app1.jsproj">
+  <Configuration Name="Debug">
+    <File Source="C:\Users\nikolame\Source\flip_flap\flipflap\FlipFlap\FlipFlap.Xbox\App1\bin\Durango\Debug\AppxManifest.xml">C:\Users\nikolame\Source\flip_flap\flipflap\FlipFlap\FlipFlap.Xbox\App1\Durango\Layout\Image\Loose\AppxManifest.xml</File>
+    <File Source="C:\Users\nikolame\Source\flip_flap\flipflap\FlipFlap\FlipFlap.Xbox\App1\bin\Durango\Debug\resources.pri">C:\Users\nikolame\Source\flip_flap\flipflap\FlipFlap\FlipFlap.Xbox\App1\Durango\Layout\Image\Loose\resources.pri</File>
+    <File Source="C:\Users\nikolame\Source\flip_flap\flipflap\FlipFlap\FlipFlap.Xbox\App1\css\default.css">C:\Users\nikolame\Source\flip_flap\flipflap\FlipFlap\FlipFlap.Xbox\App1\Durango\Layout\Image\Loose\css\default.css</File>
+    <File Source="C:\Users\nikolame\Source\flip_flap\flipflap\FlipFlap\FlipFlap.Xbox\App1\default.html">C:\Users\nikolame\Source\flip_flap\flipflap\FlipFlap\FlipFlap.Xbox\App1\Durango\Layout\Image\Loose\default.html</File>
+    <File Source="C:\Users\nikolame\Source\flip_flap\flipflap\FlipFlap\FlipFlap.Xbox\App1\images\logo.png">C:\Users\nikolame\Source\flip_flap\flipflap\FlipFlap\FlipFlap.Xbox\App1\Durango\Layout\Image\Loose\images\logo.png</File>
+    <File Source="C:\Users\nikolame\Source\flip_flap\flipflap\FlipFlap\FlipFlap.Xbox\App1\images\smalllogo.png">C:\Users\nikolame\Source\flip_flap\flipflap\FlipFlap\FlipFlap.Xbox\App1\Durango\Layout\Image\Loose\images\smalllogo.png</File>
+    <File Source="C:\Users\nikolame\Source\flip_flap\flipflap\FlipFlap\FlipFlap.Xbox\App1\images\splashscreen.png">C:\Users\nikolame\Source\flip_flap\flipflap\FlipFlap\FlipFlap.Xbox\App1\Durango\Layout\Image\Loose\images\splashscreen.png</File>
+    <File Source="C:\Users\nikolame\Source\flip_flap\flipflap\FlipFlap\FlipFlap.Xbox\App1\images\storelogo.png">C:\Users\nikolame\Source\flip_flap\flipflap\FlipFlap\FlipFlap.Xbox\App1\Durango\Layout\Image\Loose\images\storelogo.png</File>
+    <File Source="C:\Users\nikolame\Source\flip_flap\flipflap\FlipFlap\FlipFlap.Xbox\App1\js\default.js">C:\Users\nikolame\Source\flip_flap\flipflap\FlipFlap\FlipFlap.Xbox\App1\Durango\Layout\Image\Loose\js\default.js</File>
+  </Configuration>
+</Contributor>
