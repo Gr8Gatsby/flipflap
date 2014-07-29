@@ -13,8 +13,9 @@ var grid = {
 	left:-1,                    // init current square
 	matches:0,                  // Total matches found in a turn
 	matchArray:[],              // Total matched objects found in a turn
-	playerScore: 0,              // The total player score for a game
-
+	playerScore: 0,             // The total player score for a game
+	gridWidth: 0,               // The current gridWidth
+    gridHeight: 0,              // The current gridHeight
     // This function initializes the data for the grid
     // INPUT: r = rows, c = columns. will default to 10 x 10
 	createGrid: function(r, c){
