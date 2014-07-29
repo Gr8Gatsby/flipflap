@@ -4,23 +4,27 @@ var cell = {
 	color: 'undefined' 
 }
 
-// JavaScript Object representing the grid
+
+//--KS Needs to be made changable, rows and cols;
+
+
 var grid = {
-	rows: 10,	                // Default rows
-	cols: 10,	                // Deafult cols
-	g: new Array(),             // Game grid
-	top:-1,                     // init current square
-	left:-1,                    // init current square
-	matches:0,                  // Total matches found in a turn
-	matchArray:[],              // Total matched objects found in a turn
-	playerScore: 0,             // The total player score for a game
+	rows: 10,	//Default
+	cols: 10,	//Deafult
+	maxScore: 10, 	//Default
+	g: new Array(),
+	top:-1,
+	left:-1,
+	matches:0,
+	matchArray:[],
+	playerScore:0,
 	gridWidth: 0,               // The current gridWidth
     gridHeight: 0,              // The current gridHeight
-    // This function initializes the data for the grid
-    // INPUT: r = rows, c = columns. will default to 10 x 10
-	createGrid: function(r, c){
+	createGrid: function(r, c, s){
+
 		this.rows = r || 10;
 		this.cols = c || 10;
+		this.maxScore = s || 10;
 		for(var i = 0; i < this.rows; i++) {
 			this.g.push(new Array());
 			for(var j = 0; j < this.cols; j++) {
@@ -64,8 +68,6 @@ var grid = {
 		}
 	},
 
-    // This function updates the actual Background Color of the cell
-    // as well as the 'color' data for the cell
 	updateCell: function(color, i, j){
 		this.g[i][j].color = color;
 		this.g[i][j].obj.style.backgroundColor = color;
@@ -149,9 +151,35 @@ var grid = {
 		return false;
 	},
 
+	goToNextLevel: function() {
+		// Setup the game grid
+		gameGrid = Object.create(grid);
+		gameGrid.createGrid(game.levels[game.currentLevel].columns,game.levels[game.currentLevel].rows,game.levels[game.currentLevel].maxScore);
+		gameGrid.drawGrid(document.getElementById('board'));
+		//gameGrid.updateCell('red',5,5);
+		gameGrid.addSquare(2,1);
+
+	
+		//generateColorQueue(game.levels[game.currentLevel].colors);
+		//drawColorQueue();
+	},
+	deleteGrid: function() {
+		var div = document.getElementById('board');
+		div.parentNode.removeChild(div);
+
+		var newBoard = document.createElement('div');
+		newBoard.id = 'board';
+
+		document.getElementById('game').appendChild(newBoard);
+
+	},
+
+
+
     // This function checks to see if there are enough squares to score
     // This will recusively call the checkMatch function if it finds any
     // matching squares
+
 	score: function(){
 
 		var row = this.left;
@@ -194,15 +222,34 @@ var grid = {
 			    matchArray[i].obj.style.backgroundColor = game.defaultCellColor;
 				matchArray[i].color = 'undefined';
 				this.playerScore++;
+
 			}
 		}
 
-		document.getElementById('displayScore').innerText = 'Score: ' + this.playerScore;
-		document.getElementById('displayScore').textContent = 'Score: ' + this.playerScore; //Firefox hack
+		document.getElementById('displayScore').innerText = 'Score: ' + this.playerScore + '/' + this.maxScore;
+		document.getElementById('displayScore').textContent = 'Score: ' + this.playerScore + '/' + this.maxScore; //Firefox hack
+
+		if(this.playerScore >= this.maxScore){
+			//alert("You Beat the Level");
+			console.log('You Beat the Level');
+			game.currentLevel++;
+			if(game.currentLevel >= game.numLevels)
+			{
+				//end the game
+				alert('You Beat the game');
+				window.location.href = "default.html";
+			}
+			//Call goToNextLevel
+			this.score = 0;
+			this.deleteGrid();
+			this.goToNextLevel();
+		}
 
 	},
+
     // This is a recursive function that will check for adjacent matches
     // in the grid
+
 	checkMatch: function(i, j, ignore){
 		var row = i;
 		var col = j;

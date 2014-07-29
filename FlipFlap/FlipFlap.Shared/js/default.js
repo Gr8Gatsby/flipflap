@@ -48,14 +48,16 @@ function init() {
 	    });
 	}
 
-    // xbox init
+
+    //xbox init
 	if (typeof Xbox !== 'undefined') {
 	    Xbox.initVoice();
 	}
 
 	// Setup the game grid
 	gameGrid = Object.create(grid);
-	gameGrid.createGrid(10,10);
+	gameGrid.createGrid(game.levels[game.currentLevel].columns,game.levels[game.currentLevel].rows,game.levels[game.currentLevel].maxScore);
+
 	gameGrid.drawGrid(document.getElementById('board'));
 	//gameGrid.updateCell('red',5,5);
 	gameGrid.addSquare(2,1);
@@ -75,10 +77,9 @@ function init() {
 	flipper.addEventListener('animationend', flipperAnimationEnded, false);
 	flipper.addEventListener('animationstart', flipperAnimationStarted, false);
 	
-    // Generate the colorqueue
-	generateColorQueue();
 
-    // Draw the colorqueue
+	generateColorQueue(game.levels[game.currentLevel].colors);
+
 	drawColorQueue();
 
 }
@@ -91,6 +92,6 @@ function flipperAnimationEnded(e) {
 
 function flipperAnimationStarted(e) {
     game.animating = true;
-    game.nextColor = getNextColor();
+    game.nextColor = getNextColor(game.levels[game.currentLevel].colors);
     document.getElementById('flipper').style.backgroundColor = game.nextColor;
 }
