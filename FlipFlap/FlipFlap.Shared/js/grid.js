@@ -4,18 +4,23 @@ var cell = {
 	color: 'undefined' 
 }
 
+//--KS Needs to be made changable, rows and cols;
+
+
 var grid = {
 	rows: 10,	//Default
 	cols: 10,	//Deafult
+	maxScore: 10, 	//Default
 	g: new Array(),
 	top:-1,
 	left:-1,
 	matches:0,
 	matchArray:[],
 	playerScore:0,
-	createGrid: function(r, c){
+	createGrid: function(r, c, s){
 		this.rows = r || 10;
 		this.cols = c || 10;
+		this.maxScore = s || 10;
 		for(var i = 0; i < this.rows; i++) {
 			this.g.push(new Array());
 			for(var j = 0; j < this.cols; j++) {
@@ -40,6 +45,7 @@ var grid = {
 	reset: function(){
 		
 	},
+	
 	updateCell: function(color, i, j){
 		this.g[i][j].color = color;
 		this.g[i][j].obj.style.backgroundColor = color;
@@ -121,6 +127,29 @@ var grid = {
 		}
 		return false;
 	},
+	goToNextLevel: function() {
+		// Setup the game grid
+		gameGrid = Object.create(grid);
+		gameGrid.createGrid(game.levels[game.currentLevel].columns,game.levels[game.currentLevel].rows,game.levels[game.currentLevel].maxScore);
+		gameGrid.drawGrid(document.getElementById('board'));
+		//gameGrid.updateCell('red',5,5);
+		gameGrid.addSquare(2,1);
+
+	
+		//generateColorQueue(game.levels[game.currentLevel].colors);
+		//drawColorQueue();
+	},
+	deleteGrid: function() {
+		var div = document.getElementById('board');
+		div.parentNode.removeChild(div);
+
+		var newBoard = document.createElement('div');
+		newBoard.id = 'board';
+
+		document.getElementById('game').appendChild(newBoard);
+
+	},
+
 	score: function(){
 
 		var row = this.left;
@@ -163,13 +192,30 @@ var grid = {
 				matchArray[i].obj.style.backgroundColor = '#077A75';
 				matchArray[i].color = 'undefined';
 				this.playerScore++;
+
 			}
 		}
 
-		document.getElementById('displayScore').innerText = 'Score: ' + this.playerScore;
-		document.getElementById('displayScore').textContent = 'Score: ' + this.playerScore; //Firefox hack
+		document.getElementById('displayScore').innerText = 'Score: ' + this.playerScore + '/' + this.maxScore;
+		document.getElementById('displayScore').textContent = 'Score: ' + this.playerScore + '/' + this.maxScore; //Firefox hack
+
+		if(this.playerScore >= this.maxScore){
+			//alert("You Beat the Level");
+			console.log('You Beat the Level');
+			game.currentLevel++;
+			if(game.currentLevel >= game.numLevels)
+			{
+				//end the game
+				alert('You Beat the game');
+			}
+			//Call goToNextLevel
+			this.score = 0;
+			this.deleteGrid();
+			this.goToNextLevel();
+		}
 
 	},
+	
 	checkMatch: function(i, j, ignore){
 		var row = i;
 		var col = j;
