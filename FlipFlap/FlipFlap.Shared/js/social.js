@@ -1,7 +1,71 @@
-// var client = new WindowsAzure.MobileServiceClient(
-//     "https://flipflap.azure-mobile.net/",
-//     "rrJwzLmjPphORcUDVsXRBdPnGEELkq35"
-// );
+var client = new WindowsAzure.MobileServiceClient(
+    "https://flipflap.azure-mobile.net/",
+    "rrJwzLmjPphORcUDVsXRBdPnGEELkq35"
+);
+
+// function handleGoogleLogin(){
+// 	client.login("google").then(function(ev){
+// 		alert("button");
+// 		console.log(ev);	
+// 	}, function(error){
+//         alert(error);
+//     });
+// }
+
+function refreshAuthDisplay() {
+    var isLoggedIn = client.currentUser !== null;
+    $("#logged-in").toggle(isLoggedIn);
+    $("#logged-out").toggle(!isLoggedIn);
+
+    if (isLoggedIn) {
+        $("#login-name").text(client.currentUser.userId);
+        refreshTodoItems();
+    }
+}
+
+function googleLogIn() {
+		client.login("google").then(function(ev){
+			console.log(ev);
+     		refreshAuthDisplay();
+		},  function(error){
+			alert(error);
+		});
+}
+
+function facebookLogIn() {
+		client.login("facebook").then(function(ev){
+			console.log(ev);
+			refreshAuthDisplay();	
+		}, function(error){
+			alert(error);
+		});
+}
+
+function twitterLogIn() {
+		client.login("twitter").then(function(ev){
+			console.log(ev);
+			refreshAuthDisplay();	
+		}, function(error){
+			alert(error);
+		});
+}
+
+function logOut() {
+	$('a.log-out').click(function() {
+
+		client.logout();
+		refreshAuthDisplay();
+		$('#summary').html('<strong>You must login to access data.</strong>');
+	});
+}
+
+// On page init, fetch the data and set up event handlers
+$(function () {
+    refreshAuthDisplay();
+    $('#summary').html('<strong>You must login to access data.</strong>');          
+    $("#logged-out button").click(login);
+    $("#logged-in button").click(logOut);
+});
 
 // FACEBOOK
 // This is called with the results from from FB.getLoginStatus().
@@ -72,12 +136,12 @@ function fbAPI() {
 	console.log('Welcome!  Fetching your information.... ');
 	FB.api('/me', function(response) {
 	  console.log('Successful login for: ' + response.name);
-	  document.getElementById('status').innerHTML =
-		'Thanks for logging in, ' + response.name + '!';
+// 	  document.getElementById('status').innerHTML =
+// 		'\nThanks for logging in, ' + response.name + '!';
 	});
 }
 
-// 
+
 // var fb_u = { text: "Facebook User" };
 // client.getTable("Facebook_Users").insert(fb_u);
 // 

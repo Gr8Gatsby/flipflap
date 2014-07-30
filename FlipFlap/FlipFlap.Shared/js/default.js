@@ -99,6 +99,20 @@ function login() {
 	}); 
 	return false;
 	});
+	
+	$("#googleLoginButton").click(function(){
+        // alert("button");
+        googleLogIn();
+        
+    }); 
+    $("#facebookLoginButton").click(function(){
+        // alert("button");
+        facebookLogIn();
+    }); 
+    $("#twitterLoginButton").click(function(){
+        twitterLogIn();
+        // alert("button");
+    }); 
 }
 
 function flipperAnimationEnded(e) {
