@@ -36,7 +36,9 @@ C:\Programming\hackathon\UAP\flipflap\flipflapgit\FlipFlap\FlipFlap.Android\plat
 C:\Programming\hackathon\UAP\flipflap\flipflapgit\FlipFlap\FlipFlap.Android\platforms\android\assets\www\index.html \
 C:\Programming\hackathon\UAP\flipflap\flipflapgit\FlipFlap\FlipFlap.Android\platforms\android\assets\www\js \
 C:\Programming\hackathon\UAP\flipflap\flipflapgit\FlipFlap\FlipFlap.Android\platforms\android\assets\www\css\index.css \
+C:\Programming\hackathon\UAP\flipflap\flipflapgit\FlipFlap\FlipFlap.Android\platforms\android\assets\www\css\login.css \
 C:\Programming\hackathon\UAP\flipflap\flipflapgit\FlipFlap\FlipFlap.Android\platforms\android\assets\www\img\128.png \
+C:\Programming\hackathon\UAP\flipflap\flipflapgit\FlipFlap\FlipFlap.Android\platforms\android\assets\www\img\close_pop.png \
 C:\Programming\hackathon\UAP\flipflap\flipflapgit\FlipFlap\FlipFlap.Android\platforms\android\assets\www\img\logo.png \
 C:\Programming\hackathon\UAP\flipflap\flipflapgit\FlipFlap\FlipFlap.Android\platforms\android\assets\www\js\background.js \
 C:\Programming\hackathon\UAP\flipflap\flipflapgit\FlipFlap\FlipFlap.Android\platforms\android\assets\www\js\colors.js \
@@ -48,4 +50,5 @@ C:\Programming\hackathon\UAP\flipflap\flipflapgit\FlipFlap\FlipFlap.Android\plat
 C:\Programming\hackathon\UAP\flipflap\flipflapgit\FlipFlap\FlipFlap.Android\platforms\android\assets\www\js\instructions.js \
 C:\Programming\hackathon\UAP\flipflap\flipflapgit\FlipFlap\FlipFlap.Android\platforms\android\assets\www\js\jquery-2.1.0.js \
 C:\Programming\hackathon\UAP\flipflap\flipflapgit\FlipFlap\FlipFlap.Android\platforms\android\assets\www\js\keys.js \
+C:\Programming\hackathon\UAP\flipflap\flipflapgit\FlipFlap\FlipFlap.Android\platforms\android\assets\www\js\social.js \
 C:\Programming\hackathon\UAP\flipflap\flipflapgit\FlipFlap\FlipFlap.Android\platforms\android\ant-build\AndroidManifest.xml \

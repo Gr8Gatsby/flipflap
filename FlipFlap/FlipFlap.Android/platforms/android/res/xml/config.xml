@@ -10,7 +10,7 @@
         A universal app using HTML/JS
     </description>
     <author email="cctong@microsoft.com" href="https://github.com/Gr8Gatsby/flipflap">
-        Apache Cordova Team
+        Universal App Platform Team
     </author>
     <content src="index.html" />
     <access origin="*" />

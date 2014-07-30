@@ -8,11 +8,9 @@ $(document).ready(function(){
         startInsturctions();
     } else {
         init();
+        login();
     }
 });
-
-
-
 
 // Local Storage to see if user has launched for first time
 // Allow skipping instructions?
@@ -48,14 +46,16 @@ function init() {
 	    });
 	}
 
-    // xbox init
+
+    //xbox init
 	if (typeof Xbox !== 'undefined') {
 	    Xbox.initVoice();
 	}
 
 	// Setup the game grid
 	gameGrid = Object.create(grid);
-	gameGrid.createGrid(10,10);
+	gameGrid.createGrid(game.levels[game.currentLevel].columns,game.levels[game.currentLevel].rows,game.levels[game.currentLevel].maxScore);
+
 	gameGrid.drawGrid(document.getElementById('board'));
 	//gameGrid.updateCell('red',5,5);
 	gameGrid.addSquare(2,1);
@@ -75,12 +75,45 @@ function init() {
 	flipper.addEventListener('animationend', flipperAnimationEnded, false);
 	flipper.addEventListener('animationstart', flipperAnimationStarted, false);
 	
-    // Generate the colorqueue
-	generateColorQueue();
 
-    // Draw the colorqueue
+	generateColorQueue(game.levels[game.currentLevel].colors);
+
 	drawColorQueue();
 
+}
+
+function login() {
+	$('a.login-window').click(function() {
+	
+		// Getting the variable's value from a link 
+		var loginBox = $(this).attr('href');
+
+		//Fade in the Popup and add close button
+		$(loginBox).fadeIn(300);
+	
+		//Set the center alignment padding + border
+		var popMargTop = ($(loginBox).height() + 24) / 2; 
+		var popMargLeft = ($(loginBox).width() + 24) / 2; 
+	
+		$(loginBox).css({ 
+			'margin-top' : -popMargTop,
+			'margin-left' : -popMargLeft
+		});
+	
+		// Add the mask to body
+		$('body').append('<div id="mask"></div>');
+		$('#mask').fadeIn(300);
+	
+		return false;
+	});
+
+	// When clicking on the button close or the mask layer the popup closed
+	$('a.close, #mask').live('click', function() { 
+	  $('#mask , .login-popup').fadeOut(300 , function() {
+		$('#mask').remove();  
+	}); 
+	return false;
+	});
 }
 
 function flipperAnimationEnded(e) {
@@ -91,6 +124,6 @@ function flipperAnimationEnded(e) {
 
 function flipperAnimationStarted(e) {
     game.animating = true;
-    game.nextColor = getNextColor();
+    game.nextColor = getNextColor(game.levels[game.currentLevel].colors);
     document.getElementById('flipper').style.backgroundColor = game.nextColor;
 }

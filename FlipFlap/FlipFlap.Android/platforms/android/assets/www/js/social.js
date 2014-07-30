@@ -1,18 +1,7 @@
-var client = new WindowsAzure.MobileServiceClient(
-    "https://flipflap.azure-mobile.net/",
-    "rrJwzLmjPphORcUDVsXRBdPnGEELkq35"
-);
-
-// GOOGLE
-
-function handleGoogleLogin(){
-	client.login("google").then(function(ev){
-		console.log(ev);	
-	}, function(error){
-        alert(error);
-    });
-}
-
+// var client = new WindowsAzure.MobileServiceClient(
+//     "https://flipflap.azure-mobile.net/",
+//     "rrJwzLmjPphORcUDVsXRBdPnGEELkq35"
+// );
 
 // FACEBOOK
 // This is called with the results from from FB.getLoginStatus().
@@ -73,7 +62,7 @@ window.fbAsyncInit = function() {
 	var js, fjs = d.getElementsByTagName(s)[0];
 	if (d.getElementById(id)) return;
 	js = d.createElement(s); js.id = id;
-	js.src = "https://connect.facebook.net/en_US/sdk.js";
+	js.src = "http://connect.facebook.net/en_US/sdk.js";
 	fjs.parentNode.insertBefore(js, fjs);
 }(document, 'script', 'facebook-jssdk'));
 
@@ -83,12 +72,12 @@ function fbAPI() {
 	console.log('Welcome!  Fetching your information.... ');
 	FB.api('/me', function(response) {
 	  console.log('Successful login for: ' + response.name);
-// 	  document.getElementById('status').innerHTML =
-// 		'\nThanks for logging in, ' + response.name + '!';
+	  document.getElementById('status').innerHTML =
+		'Thanks for logging in, ' + response.name + '!';
 	});
 }
 
-
+// 
 // var fb_u = { text: "Facebook User" };
 // client.getTable("Facebook_Users").insert(fb_u);
 // 
