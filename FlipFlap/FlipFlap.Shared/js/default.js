@@ -116,17 +116,17 @@ function login() {
 	});
 	
 	$("#googleLoginButton").click(function(){
-        alert("button");
+        // alert("button");
         googleLogIn();
         
     }); 
     $("#facebookLoginButton").click(function(){
-        alert("button");
+        // alert("button");
         facebookLogIn();
     }); 
     $("#twitterLoginButton").click(function(){
         twitterLogIn();
-        alert("button");
+        // alert("button");
     }); 
 }
 
