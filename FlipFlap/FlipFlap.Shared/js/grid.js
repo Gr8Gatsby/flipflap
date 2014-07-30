@@ -173,7 +173,7 @@ var grid = {
 		gameGrid.createGrid(game.levels[game.currentLevel].columns,game.levels[game.currentLevel].rows,game.levels[game.currentLevel].maxScore);
 		gameGrid.drawGrid(document.getElementById('board'));
 		//gameGrid.updateCell('red',5,5);
-		gameGrid.addSquare(2,1);
+		//gameGrid.addSquare(2,1);
 
 	
 		//generateColorQueue(game.levels[game.currentLevel].colors);
