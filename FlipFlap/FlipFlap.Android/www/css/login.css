@@ -1,16 +1,20 @@
+a.no-account:link { text-decoration: none; color: #5f6a70; }
+
 .container {width: 960px; margin: 0 auto; overflow: hidden;}
 
-#content {	float: left; width: 100%;}
+#content {	float: left; width: 100%; }
 
 .post { margin: 0 auto; padding-bottom: 50px; float: left; width: 960px; }
 
 .btn-sign {
-	width:50px;
+	width:60px;
 	margin-bottom:20px;
+	margin-right: 80px;
 	margin:10 auto;
 	padding:8px;
+	float: right;
 	border-radius:5px;
-	background: #077A75;
+	/*background: #077A75;*/
     filter: progid:DXImageTransform.Microsoft.gradient(startColorStr='#00c6ff', EndColorStr='#018eb6');
 	text-align:center;
 	font-size:16px;
@@ -19,7 +23,12 @@
 	text-transform:uppercase;
 }
 
-.btn-sign a { color:#fff; text-shadow:0 1px 2px #161616; }
+.btn-sign a { color:#fff; /*text-shadow:0 1px 2px #323232;*/ }
+
+.logged-in
+{
+	display: none;
+}
 
 #mask {
 	display: none;
@@ -32,20 +41,24 @@
 }
 
 .login-popup{
+	margin-left: auto;
+	margin-right: auto;
+	max-width: 520px;
 	display:none;
 	background: #eee;
-	padding: 10px; 	
+	padding: 20px; 	
 	float: left;
 	font-size: 1.2em;
 	position: fixed;
+	overflow: hidden;
 	top: 50%; left: 50%;
 	z-index: 99999;
-	box-shadow: 0px 0px 20px #999;
-	-moz-box-shadow: 0px 0px 20px #999; /* Firefox */
-    -webkit-box-shadow: 0px 0px 20px #999; /* Safari, Chrome */
+	box-shadow: 0px 0px 15px #999;
+	-moz-box-shadow: 0px 0px 15px #999; /* Firefox */
+    -webkit-box-shadow: 0px 0px 15px #999; /* Safari, Chrome */
 	border-radius:2px 2px 2px 2px;
     -moz-border-radius: 2px; /* Firefox */
-    -webkit-border-radius: 2px; /* Safari, Chrome */
+    -webkit-border-radius: 2px; /* Safari, Chrome */ 
 }
 
 img.btn_close {
@@ -54,6 +67,8 @@ img.btn_close {
 	height: auto; 
 	margin: -28px -28px 0 0;
 }
+
+
 
 fieldset { 
 	border:none; 
@@ -70,16 +85,16 @@ form.signin .textbox span {
 
 form.signin p, form.signin span { 
 	color:#999; 
-	font-size:11px; 
+	font-size:14px; 
 	line-height:18px;
 } 
 
 form.signin .textbox input { 
 	background:#666666; 
-	border-bottom:1px solid #333;
-	border-left:1px solid #000;
-	border-right:1px solid #333;
-	border-top:1px solid #000;
+	border-bottom:2px solid #333;
+	border-left:2px solid #000;
+	border-right:2px solid #333;
+	border-top:2px solid #000;
 	color:#fff; 
 	border-radius: 3px 3px 3px 3px;
 	-moz-border-radius: 3px;

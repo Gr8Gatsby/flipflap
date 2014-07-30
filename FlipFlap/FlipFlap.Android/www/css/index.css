@@ -124,7 +124,7 @@ h1 {
 
 body {
     font-family: 'Consolas';
-    background-color: #1dd2af;
+    background-color: #4E67C8;
     color: white;
     margin:20px;
     overflow: hidden;
@@ -179,9 +179,17 @@ a:visited {
 }
 
 #header {
+    top: 30px;
     margin-left: auto;
     margin-right: auto;
     width:100%;
+}
+.clearfix:after {
+    clear: both;
+}
+.clearfix:before, .clearfix:after {
+    content: " ";
+    display: table;
 }
 
 #footer {

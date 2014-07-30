@@ -66,6 +66,7 @@ var grid = {
 				this.g[i][j].obj = s;
 			}
 		}
+		this.addSquare(2,1);
 	},
 
 	updateCell: function(color, i, j){
@@ -90,6 +91,21 @@ var grid = {
 		square.textContent = '_';                                   // Firefox hack
 		holder.appendChild(square);
 		document.body.appendChild(holder);
+
+		// Setup event listeners for CSS Animations
+		//var flipper = document.getElementById('flipper');
+
+	    //IE event listeners
+		holder.addEventListener('MSAnimationEnd', flipperAnimationEnded, false);
+		holder.addEventListener('MSAnimationStart', flipperAnimationStarted, false);
+
+	    // Webkit event listeners
+		holder.addEventListener('webkitAnimationEnd', flipperAnimationEnded, false);
+		holder.addEventListener('webkitAnimationStart', flipperAnimationStarted, false);
+
+	    // Firefox event listeners
+		holder.addEventListener('animationend', flipperAnimationEnded, false);
+		holder.addEventListener('animationstart', flipperAnimationStarted, false);
 	},
 
 	// This function moves the 'flipper' square
@@ -157,7 +173,7 @@ var grid = {
 		gameGrid.createGrid(game.levels[game.currentLevel].columns,game.levels[game.currentLevel].rows,game.levels[game.currentLevel].maxScore);
 		gameGrid.drawGrid(document.getElementById('board'));
 		//gameGrid.updateCell('red',5,5);
-		gameGrid.addSquare(2,1);
+		//gameGrid.addSquare(2,1);
 
 	
 		//generateColorQueue(game.levels[game.currentLevel].colors);
@@ -171,6 +187,12 @@ var grid = {
 		newBoard.id = 'board';
 
 		document.getElementById('game').appendChild(newBoard);
+
+		var flipper = document.getElementById('flipper');
+		flipper.parentNode.removeChild(flipper);
+
+		//var sq = document.getElementById('sq');
+		//sq.parentNode.removeChild(sq);
 
 	},
 
