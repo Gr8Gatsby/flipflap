@@ -3,16 +3,14 @@ var client = new WindowsAzure.MobileServiceClient(
     "rrJwzLmjPphORcUDVsXRBdPnGEELkq35"
 );
 
-// GOOGLE
-
-function handleGoogleLogin(){
-	client.login("google").then(function(ev){
-		alert("button");
-		console.log(ev);	
-	}, function(error){
-        alert(error);
-    });
-}
+// function handleGoogleLogin(){
+// 	client.login("google").then(function(ev){
+// 		alert("button");
+// 		console.log(ev);	
+// 	}, function(error){
+//         alert(error);
+//     });
+// }
 
 function refreshAuthDisplay() {
     var isLoggedIn = client.currentUser !== null;
@@ -25,30 +23,32 @@ function refreshAuthDisplay() {
     }
 }
 
-// function google-logIn() {
-// 		client.login("google").then(function(ev){
-// 		console.log(ev);
-//      refreshAuthDisplay();
-// 		},  function(error){
-// 			alert(error);
-// 		});
-// }
-// 
-// function facebook-logIn() {
-// 		client.login("facebook").then(function(ev){
-// 		console.log(ev);	
-// 		}, refreshAuthDisplay, function(error){
-// 			alert(error);
-// 		});
-// }
-// 
-// function twitter-logIn() {
-// 		client.login("twitter").then(function(ev){
-// 		console.log(ev);	
-// 		}, refreshAuthDisplay, function(error){
-// 			alert(error);
-// 		});
-// }
+function googleLogIn() {
+		client.login("google").then(function(ev){
+			console.log(ev);
+     		refreshAuthDisplay();
+		},  function(error){
+			alert(error);
+		});
+}
+
+function facebookLogIn() {
+		client.login("facebook").then(function(ev){
+			console.log(ev);
+			refreshAuthDisplay();	
+		}, function(error){
+			alert(error);
+		});
+}
+
+function twitterLogIn() {
+		client.login("twitter").then(function(ev){
+			console.log(ev);
+			refreshAuthDisplay();	
+		}, function(error){
+			alert(error);
+		});
+}
 
 function logOut() {
 	$('a.log-out').click(function() {
@@ -56,14 +56,14 @@ function logOut() {
 		client.logout();
 		refreshAuthDisplay();
 		$('#summary').html('<strong>You must login to access data.</strong>');
-	}
+	});
 }
 
 // On page init, fetch the data and set up event handlers
 $(function () {
     refreshAuthDisplay();
     $('#summary').html('<strong>You must login to access data.</strong>');          
-    $("#logged-out button").click(logIn);
+    $("#logged-out button").click(login);
     $("#logged-in button").click(logOut);
 });
 
