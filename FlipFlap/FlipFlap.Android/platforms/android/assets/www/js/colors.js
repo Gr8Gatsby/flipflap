@@ -36,18 +36,18 @@ var drawColorQueue = function () {
 }
 
 // Initialize the colorQueue with 3 random values
-var generateColorQueue = function(){
+var generateColorQueue = function(cNum){
 	for(var i = 0; i < 3; i++) {
-		colorQueue.push(getRandomColor());
+		colorQueue.push(getRandomColor(cNum));
 	}
 }
 
 // Get a new color
-var getNextColor = function(){
+var getNextColor = function(cNum){
     // Remove the next color
     var c = colorQueue.shift();
     // Add a new random color
-    colorQueue.push(getRandomColor());
+    colorQueue.push(getRandomColor(cNum));
     // Redraw the color queue on the HTML page
 	drawColorQueue();
     // Return the color that was removed
@@ -55,7 +55,7 @@ var getNextColor = function(){
 }
 
 //Get Random Color returns a random color from the colorQueue
-var getRandomColor = function () {
+var getRandomColor = function (cNum) {
     // Get a random color from the color palette
-    return colors[Math.floor(Math.random() * colors.length)];
+    return colors[Math.floor(Math.random() * cNum)];
 }
