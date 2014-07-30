@@ -6,45 +6,56 @@
     <link rel="stylesheet" href="css/login.css">
     <link rel="stylesheet" href="css/xbox.css">      
     <script src="https://ajax.aspnetcdn.com/ajax/mobileservices/MobileServices.Web-1.1.3.min.js"></script>
-    <script src='js/social.js'></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>  
+    <script src='js/social.js'></script>
 </head>
 <body>
     <div id="instuctions" class="hidden"></div>
-    <div id='header'>
+    <div id='header' class="clearfix">
         <h1>Flip Flap</h1>
         <div class="btn-sign">
-			<a href="#login-box" class="login-window">Login</a>
+			<a href="#login-box" class="login-window">Log in</a>
+        </div>
+        <div id="log-out" class="logged-in">
+        	
+        	<span>User		
+        	
+        	<a href="#login-box">Log out<a/>
+        	</span>
+        	
         </div>
         
         <div id="login-box" class="login-popup">
 			<a href="#" class="close"><img src="img/close_pop.png" class="btn_close" title="Close Window" alt="Close" /></a>
-		  <form method="post" class="signin" action="#">
-				
+		  <form method="post" class="signin" action="#">				
 				<fb:login-button scope="public_profile,email" onlogin="checkLoginState();"></fb:login-button>
 				<div id="status"></div>
 				
 				<fieldset class="textbox">
-				<label class="username">
-				<span>Username or email</span>
-				<input id="username" name="username" value="" type="text" autocomplete="on" placeholder="Username">
-				</label>
+				<p style="margin-bottom:100px;"></p>
 			
-				<label class="password">
-				<span>Password</span>
-				<input id="password" name="password" value="" type="password" placeholder="Password">
-				</label>
-			
-				<button class="submit button" type="button">Sign in</button>
+				<button class="submit button" type="button">Log in</button>
 			
 				<p>
-				<a class="forgot" href="#">Forgot your password?</a>
+				Don't have an account? <a class="no-account" href="#">Sign Up</a>
 				</p>
 			
 				</fieldset>
 		  </form>
-		  
-		  <button id="googleLoginButton" onclick="handleGoogleLogin()">Google</button>
+		  <table>
+			  <tr><td>
+			  <button id="googleLoginButton" class="submit button" onclick="handleGoogleLogin()">Google</button>
+			  </td></tr>
+			  <tr><td>
+			  <button id="googleLoginButton" class="submit button">Log in with Google</button>
+			  </td></tr>
+			  <tr><td>
+			  <button id="facebookLoginButton" class="submit button">Log in with Facebook</button>
+			  </td></tr>
+			  <tr><td>
+			  <button id="twitterLoginButton" class="submit button">Log in with Twitter</button>
+			  </td></tr>
+		  </table>
 		</div>
 		
         <div id='colors'></div>
@@ -67,6 +78,7 @@
     <script src='js/keys.js'></script>
     <script src='js/grid.js'></script>
     <script src='js/default.js'></script>
+    <script src='js/social.js'></script>
     <script src='js/xbox.js'></script>
 </body>
 </html>

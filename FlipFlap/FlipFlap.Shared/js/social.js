@@ -7,12 +7,65 @@ var client = new WindowsAzure.MobileServiceClient(
 
 function handleGoogleLogin(){
 	client.login("google").then(function(ev){
+		alert("button");
 		console.log(ev);	
 	}, function(error){
         alert(error);
     });
 }
 
+function refreshAuthDisplay() {
+    var isLoggedIn = client.currentUser !== null;
+    $("#logged-in").toggle(isLoggedIn);
+    $("#logged-out").toggle(!isLoggedIn);
+
+    if (isLoggedIn) {
+        $("#login-name").text(client.currentUser.userId);
+        refreshTodoItems();
+    }
+}
+
+// function google-logIn() {
+// 		client.login("google").then(function(ev){
+// 		console.log(ev);
+//      refreshAuthDisplay();
+// 		},  function(error){
+// 			alert(error);
+// 		});
+// }
+// 
+// function facebook-logIn() {
+// 		client.login("facebook").then(function(ev){
+// 		console.log(ev);	
+// 		}, refreshAuthDisplay, function(error){
+// 			alert(error);
+// 		});
+// }
+// 
+// function twitter-logIn() {
+// 		client.login("twitter").then(function(ev){
+// 		console.log(ev);	
+// 		}, refreshAuthDisplay, function(error){
+// 			alert(error);
+// 		});
+// }
+
+function logOut() {
+	$('a.log-out').click(function() {
+
+		client.logout();
+		refreshAuthDisplay();
+		$('#summary').html('<strong>You must login to access data.</strong>');
+	}
+}
+
+// On page init, fetch the data and set up event handlers
+$(function () {
+    refreshAuthDisplay();
+    $('#summary').html('<strong>You must login to access data.</strong>');          
+    $("#logged-out button").click(logIn);
+    $("#logged-in button").click(logOut);
+});
 
 // FACEBOOK
 // This is called with the results from from FB.getLoginStatus().
