@@ -1,6 +1,6 @@
 ﻿// This file has helper functions for the color managment of square colors
 // Default color pallate
-var colors = ['#873129', '#F1C999', '#F38821', '#F9E900', '#7ABAA6', '#21C0F5'];
+var colors = ['#F14124', '#F9E900', '#A7EA52', '#5DCEAF', '#FF8021', '#B4DCFA'];
 
 // Color queue that is displayed on the screen
 var colorQueue = [];
