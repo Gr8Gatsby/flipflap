@@ -237,6 +237,7 @@ var grid = {
 			{
 				//end the game
 				alert('You Beat the game');
+				window.location.href = "default.html";
 			}
 			//Call goToNextLevel
 			this.score = 0;
