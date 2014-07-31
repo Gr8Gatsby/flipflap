@@ -59,22 +59,7 @@ function init() {
 
 	gameGrid.drawGrid(document.getElementById('board'));
 	//gameGrid.updateCell('red',5,5);
-	gameGrid.addSquare(2,1);
-
-	// Setup event listeners for CSS Animations
-	var flipper = document.getElementById('flipper');
-
-    //IE event listeners
-	flipper.addEventListener('MSAnimationEnd', flipperAnimationEnded, false);
-	flipper.addEventListener('MSAnimationStart', flipperAnimationStarted, false);
-
-    // Webkit event listeners
-	flipper.addEventListener('webkitAnimationEnd', flipperAnimationEnded, false);
-	flipper.addEventListener('webkitAnimationStart', flipperAnimationStarted, false);
-
-    // Firefox event listeners
-	flipper.addEventListener('animationend', flipperAnimationEnded, false);
-	flipper.addEventListener('animationstart', flipperAnimationStarted, false);
+	
 	
 
 	generateColorQueue(game.levels[game.currentLevel].colors);
