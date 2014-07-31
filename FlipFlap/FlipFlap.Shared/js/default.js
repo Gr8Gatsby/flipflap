@@ -124,7 +124,7 @@ function refreshAuthDisplay() {
           document.getElementById("log-in").style.display  = 'none';
         if (document.getElementById("log-out").style.display == 'none')
           document.getElementById("log-out").style.display = 'block';
-        window.top.location.href = "#";
+        window.top.location.href = "";
         displayUserInfo();
     }
    	else {  // not logged in
