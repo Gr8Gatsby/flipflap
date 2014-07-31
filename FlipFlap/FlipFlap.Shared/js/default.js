@@ -102,9 +102,7 @@ function login() {
 	});
 	
 	$("#googleLoginButton").click(function(){
-        // alert("button");
         googleLogIn();
-        
     }); 
     $("#facebookLoginButton").click(function(){
         // alert("button");
@@ -112,7 +110,6 @@ function login() {
     }); 
     $("#twitterLoginButton").click(function(){
         twitterLogIn();
-        // alert("button");
     }); 
 }
 
@@ -127,6 +124,7 @@ function refreshAuthDisplay() {
           document.getElementById("log-in").style.display  = 'none';
         if (document.getElementById("log-out").style.display == 'none')
           document.getElementById("log-out").style.display = 'block';
+        window.top.location.href = "#";
         displayUserInfo();
     }
    	else {  // not logged in
