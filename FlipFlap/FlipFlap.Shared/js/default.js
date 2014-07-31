@@ -9,6 +9,7 @@ $(document).ready(function(){
     } else {
         init();
         login();
+        refreshAuthDisplay();
     }
 });
 
@@ -129,6 +130,28 @@ function login() {
         // alert("button");
     }); 
 }
+
+function refreshAuthDisplay() {
+    var isLoggedIn = client.currentUser !== null;
+    $("#log-in").toggle(isLoggedIn);
+    $("#log-out").toggle(!isLoggedIn);
+
+    if (isLoggedIn) {  // logged in
+        $("#login-name").text(client.currentUser.userId);
+        if (document.getElementById("log-in").style.display == 'block')
+          document.getElementById("log-in").style.display  = 'none';
+        if (document.getElementById("log-out").style.display == 'none')
+          document.getElementById("log-out").style.display = 'block';
+        displayUserInfo();
+    }
+   	else {  // not logged in
+		if (document.getElementById("log-out").style.display == 'block' ||
+		document.getElementById("log-out").style.display == 'inline')
+          document.getElementById("log-out").style.display = 'none';
+        if (document.getElementById("log-in").style.display == 'none')
+          document.getElementById("log-in").style.display = 'block';
+   	}
+} 
 
 function flipperAnimationEnded(e) {
 	if(!game.isOver){

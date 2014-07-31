@@ -1,4 +1,5 @@
-a.no-account:link { text-decoration: none; color: #5f6a70; }
+a.login-window { text-decoration: none; color: #fff; display: block; }
+a.logout { text-decoration: none; color: #fff; text-transform:uppercase; display: none; }
 
 .container {width: 960px; margin: 0 auto; overflow: hidden;}
 
@@ -14,7 +15,6 @@ a.no-account:link { text-decoration: none; color: #5f6a70; }
 	padding:8px;
 	float: right;
 	border-radius:5px;
-	/*background: #077A75;*/
     filter: progid:DXImageTransform.Microsoft.gradient(startColorStr='#00c6ff', EndColorStr='#018eb6');
 	text-align:center;
 	font-size:16px;
@@ -24,11 +24,6 @@ a.no-account:link { text-decoration: none; color: #5f6a70; }
 }
 
 .btn-sign a { color:#fff; /*text-shadow:0 1px 2px #323232;*/ }
-
-.logged-in
-{
-	display: none;
-}
 
 #mask {
 	display: none;
@@ -43,7 +38,7 @@ a.no-account:link { text-decoration: none; color: #5f6a70; }
 .login-popup{
 	margin-left: auto;
 	margin-right: auto;
-	max-width: 520px;
+	max-width: 600px;
 	display:none;
 	background: #eee;
 	padding: 20px; 	
@@ -67,8 +62,6 @@ img.btn_close {
 	height: auto; 
 	margin: -28px -28px 0 0;
 }
-
-
 
 fieldset { 
 	border:none; 

@@ -3,26 +3,6 @@ var client = new WindowsAzure.MobileServiceClient(
     "rrJwzLmjPphORcUDVsXRBdPnGEELkq35"
 );
 
-// function handleGoogleLogin(){
-// 	client.login("google").then(function(ev){
-// 		alert("button");
-// 		console.log(ev);	
-// 	}, function(error){
-//         alert(error);
-//     });
-// }
-
-function refreshAuthDisplay() {
-    var isLoggedIn = client.currentUser !== null;
-    $("#logged-in").toggle(isLoggedIn);
-    $("#logged-out").toggle(!isLoggedIn);
-
-    if (isLoggedIn) {
-        $("#login-name").text(client.currentUser.userId);
-        refreshTodoItems();
-    }
-}
-
 function googleLogIn() {
 		client.login("google").then(function(ev){
 			console.log(ev);
@@ -30,6 +10,7 @@ function googleLogIn() {
 		},  function(error){
 			alert(error);
 		});
+		getPlayerInfo();
 }
 
 function facebookLogIn() {
@@ -39,6 +20,7 @@ function facebookLogIn() {
 		}, function(error){
 			alert(error);
 		});
+		getPlayerInfo();
 }
 
 function twitterLogIn() {
@@ -48,11 +30,11 @@ function twitterLogIn() {
 		}, function(error){
 			alert(error);
 		});
+		getPlayerInfo();
 }
 
 function logOut() {
 	$('a.log-out').click(function() {
-
 		client.logout();
 		refreshAuthDisplay();
 		$('#summary').html('<strong>You must login to access data.</strong>');
@@ -63,88 +45,101 @@ function logOut() {
 $(function () {
     refreshAuthDisplay();
     $('#summary').html('<strong>You must login to access data.</strong>');          
-    $("#logged-out button").click(login);
-    $("#logged-in button").click(logOut);
+    $("#log-in").click(login);
+    $("#log-out").click(logOut);
 });
 
-// FACEBOOK
-// This is called with the results from from FB.getLoginStatus().
-function statusChangeCallback(response) {
-	console.log('statusChangeCallback');
-	console.log(response);
-	// The response object is returned with a status field that lets the
-	// app know the current login status of the person.
-	// Full docs on the response object can be found in the documentation
-	// for FB.getLoginStatus().
-	if (response.status === 'connected') {
-	  // Logged into your app and Facebook.
-	  fbAPI();
-	} else if (response.status === 'not_authorized') {
-	  // The person is logged into Facebook, but not your app.
-	  document.getElementById('status').innerHTML = 'Please log ' +
-		'into this app.';
-	} else {
-	  // The person is not logged into Facebook, so we're not sure if
-	  // they are logged into this app or not.
-	  document.getElementById('status').innerHTML = 'Please log ' +
-		'into Facebook.';
-	}
+function displayUserInfo() {
+
 }
 
-// This function is called when someone finishes with the Login
-// Button.  See the onlogin handler attached to it in the sample
-// code below.
-function checkLoginState() {
-	FB.getLoginStatus(function(response) {
-	  statusChangeCallback(response);
-	});
-}
+var playerTable = client.getTable("Players");
 
-window.fbAsyncInit = function() {
-	FB.init({
-	appId      : '676793462391035',
-	cookie     : true,  // enable cookies to allow the server to access 
-						// the session
-	xfbml      : true,  // parse social plugins on this page
-	version    : 'v2.0' // use version 2.0
-	});
-
-    // 1. Logged into your app ('connected')
-    // 2. Logged into Facebook, but not your app ('not_authorized')
-    // 3. Not logged into Facebook and can't tell if they are logged into
-    //    your app or not.
-    //
-    // These three cases are handled in the callback function.
-
-    FB.getLoginStatus(function(response) {
-	  statusChangeCallback(response);
+function getPlayerInfo(item, user, request)
+{
+	item.UserName = "<unknown>"; // default
+    user.getIdentities({
+        success: function (identities) {
+            var url = null;
+            var oauth = null;
+            if (identities.google) {
+                var googleAccessToken = identities.google.accessToken;
+                url = 'https://www.googleapis.com/oauth2/v3/userinfo?access_token=' + googleAccessToken;
+            } else if (identities.facebook) {
+                var fbAccessToken = identities.facebook.accessToken;
+                url = 'https://graph.facebook.com/me?access_token=' + fbAccessToken;
+            } else if (identities.microsoft) {
+                var liveAccessToken = identities.microsoft.accessToken;
+                url = 'https://apis.live.net/v5.0/me/?method=GET&access_token=' + liveAccessToken;
+            } else if (identities.twitter) {
+                var userId = user.userId;
+                var twitterId = userId.substring(userId.indexOf(':') + 1);
+                url = 'https://api.twitter.com/1.1/users/show.json?user_id=' + twitterId;
+                var consumerKey = process.env.MS_TwitterConsumerKey;
+                var consumerSecret = process.env.MS_TwitterConsumerSecret;
+                oauth = {
+                    consumer_key: consumerKey,
+                    consumer_secret: consumerSecret,
+                    token: identities.twitter.accessToken,
+                    token_secret: identities.twitter.accessTokenSecret
+                };
+            }
+ 
+            if (url) {
+                var requestCallback = function (err, resp, body) {
+                    if (err || resp.statusCode !== 200) {
+                        console.error('Error sending data to the provider: ', err);
+                        request.respond(statusCodes.INTERNAL_SERVER_ERROR, body);
+                    } else {
+                        try {
+                            var userData = JSON.parse(body);
+                            item.UserName = userData.name;
+                            request.execute();
+                        } catch (ex) {
+                            console.error('Error parsing response from the provider API: ', ex);
+                            request.respond(statusCodes.INTERNAL_SERVER_ERROR, ex);
+                        }
+                    }
+                }
+                var req = require('request');
+                var reqOptions = {
+                    uri: url,
+                    headers: { Accept: "application/json" }
+                };
+                if (oauth) {
+                    reqOptions.oauth = oauth;
+                }
+                req(reqOptions, requestCallback);
+            } else {
+                // Insert with default user name
+                
+                console.log("Can't Add Player");
+            }
+        }
     });
-};
-
-// Load the SDK asynchronously
-(function(d, s, id) {
-	var js, fjs = d.getElementsByTagName(s)[0];
-	if (d.getElementById(id)) return;
-	js = d.createElement(s); js.id = id;
-	js.src = "https://connect.facebook.net/en_US/sdk.js";
-	fjs.parentNode.insertBefore(js, fjs);
-}(document, 'script', 'facebook-jssdk'));
-
-// Here we run a very simple test of the Graph API after login is
-// successful.  See statusChangeCallback() for when this call is made.
-function fbAPI() {
-	console.log('Welcome!  Fetching your information.... ');
-	FB.api('/me', function(response) {
-	  console.log('Successful login for: ' + response.name);
-// 	  document.getElementById('status').innerHTML =
-// 		'\nThanks for logging in, ' + response.name + '!';
-	});
 }
 
-
-// var fb_u = { text: "Facebook User" };
-// client.getTable("Facebook_Users").insert(fb_u);
+// var newTuple = document.getElementById("someInput").value;
+// var item = { PostItNote: document.getElementById("someInput").value};
 // 
-// var tw_t = { };
-// client.getTable("Twitter_Users").insert(tw_u);
+// testTable.insert(item);
+//  
+// Querying the DB:
+//  
+// function searchPlayer(){
+// 	var query = playerTable; //Give it column name
+// 	console.log("GOT POST UserInfo");
+// 	//console.log("type of element: "+element);
+// 	query.read().then(function (results) {
+// 	for (var i = 0; i < results.length; i++) {
+// 		console.log(results[i].id);
+// 	// handle results
+// 	}
+//   });
+// }
+
+
+
+
+
 

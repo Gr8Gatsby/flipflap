@@ -5,24 +5,25 @@
     <link rel="stylesheet" href="css/default.css">
     <link rel="stylesheet" href="css/login.css">
     <link rel="stylesheet" href="css/xbox.css">      
-    <script src="https://ajax.aspnetcdn.com/ajax/mobileservices/MobileServices.Web-1.1.3.min.js"></script>
+    <script src="http://ajax.aspnetcdn.com/ajax/mobileservices/MobileServices.Web-1.1.3.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>  
     <script src='js/social.js'></script>
 </head>
 <body>
     <div id="instuctions" class="hidden"></div>
-    <div id='header' class="clearfix">
-        <h1>Flip Flap</h1>
-        <div class="btn-sign">
-			<a href="#login-box" id="logged-out" class="login-window">Log in</a>
-        </div>
-        <div id="logged-in">
-        </div>	
-        	
-        	<a href="#login-box">Log out<a/>
-        	
-        </div>
+    <div id='header'>
+        <h1>Flip Flap</h1>   
         
+        <div id="topbar">
+			<div class="btn-sign">
+				<a href="#login-box" id="log-in" class="login-window">Log in</a>
+			</div>
+			<div>
+				<a href="#" id="log-out" class="logout">Log out<a/>
+			</div>
+			<div id="hscore">Highest Score: </div>
+		</div>
+		
         <div id="login-box" class="login-popup">
 			<a href="#" class="close"><img src="img/close_pop.png" class="btn_close" title="Close Window" alt="Close" /></a>
 		  <form method="post" class="signin" action="#">				
@@ -63,6 +64,7 @@
 
     <div id="footer">
         <div id='displayScore'></div>
+    </div>
     <a href="default.html">Reset Game</a>
 
    <!-- <script src='js/jquery-2.1.0.js'></script> -->

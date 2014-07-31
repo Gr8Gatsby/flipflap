@@ -60,12 +60,9 @@ a:visited {
 	margin-right: auto;
 	width:100%;
 }
-.clearfix:after {
-    clear: both;
-}
-.clearfix:before, .clearfix:after {
-    content: " ";
-    display: table;
+
+#topbar {
+	margin-bottom: 20px;
 }
 
 #footer {
